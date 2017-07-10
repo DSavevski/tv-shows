@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import {toPromise} from 'rxjs/operator/toPromise';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class ShowService {
@@ -14,11 +15,14 @@ export class ShowService {
 
   constructor(private http: Http) {}
 
-  getShows(): Promise<any []> {
+  getShows(): Observable<any []> {
+    // return this.http.get(this.apiUrl)
+    //   .toPromise()
+    //   .then(response => response.json())
+    //   .catch(this.handleError);
+
     return this.http.get(this.apiUrl)
-      .toPromise()
-      .then(response => response.json())
-      .catch(this.handleError);
+      .map(response => response.json());
   }
 
   getShow(id: number): Promise<any> {

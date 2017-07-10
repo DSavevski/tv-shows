@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ShowService} from '../show.service';
 import {ActivatedRoute} from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-show-details-cast',
@@ -10,7 +11,8 @@ import {ActivatedRoute} from '@angular/router';
 export class ShowDetailsCastComponent implements OnInit {
   cast: any[];
   constructor(private service: ShowService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private location: Location) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -21,6 +23,10 @@ export class ShowDetailsCastComponent implements OnInit {
           console.log(data);
         });
     });
+  }
+
+  onBack() {
+    this.location.back();
   }
 
 }

@@ -14,7 +14,6 @@ import { ShowsComponent } from './shows/shows.component';
 import { ShowDetailsCastComponent } from './show-details-cast/show-details-cast.component';
 import { ShowDetailsEpisodesComponent } from './show-details-episodes/show-details-episodes.component';
 import {ShowSearchService} from './show-search.service';
-import { ShowSearchComponent } from './show-search/show-search.component';
 
 @NgModule({
   declarations: [
@@ -22,8 +21,7 @@ import { ShowSearchComponent } from './show-search/show-search.component';
     ShowDetailsComponent,
     ShowsComponent,
     ShowDetailsCastComponent,
-    ShowDetailsEpisodesComponent,
-    ShowSearchComponent
+    ShowDetailsEpisodesComponent
   ],
   imports: [
     BrowserModule,

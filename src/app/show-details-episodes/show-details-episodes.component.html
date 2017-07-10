@@ -1,15 +1,16 @@
 <h2 class="card-header text-center">Episodes</h2>
+<button (click)="onBack()" class="btn btn-primary btn-block">Back</button>
 <div class="container">
   <div class="card mb-3" style="margin-top: 20px;">
     <div class="card text-center" *ngFor="let episode of episodes">
       <div class="card-block">
         <h4 class="card-title">{{episode.name}}</h4>
-        <p class="card-text">{{episode.summary}}</p>
+        <p class="card-text" [innerHTML]="episode.summary"></p>
         <p class="card-text">
           <small class="text-muted">Airdate: {{episode.airdate | date}}</small>
         </p>
       </div>
-      <img class="card-img-bottom" [src]="episode.image.original" alt="Card image cap">
+      <img *ngIf="episode.image" class="card-img-bottom" [src]="episode.image?.original" alt="Card image cap">
     </div>
   </div>
 </div>

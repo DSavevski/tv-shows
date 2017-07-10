@@ -3,25 +3,54 @@
   <div class="row">
     <div class="col-lg-12" style="margin-bottom: 5px;">
       <div class="input-group">
-        <input #searchBox (keyup)="search(searchBox.value)" type="text" class="form-control" placeholder="Find show..." />
-        <span class="input-group-btn">
-        <button class="btn btn-secondary" type="button">Search</button>
-      </span>
+        <input #searchBox (keyup)="search(searchBox.value)" [(ngModel)]="searchValue" type="text"
+               class="form-control" placeholder="Find show..." />
       </div>
     </div>
 
-    <div class="col-lg-12" *ngIf="shows">
+    <div class="col-lg-12">
       <div class="card" *ngFor="let show of shows | async" style="margin-bottom: 5px;">
         <div class="row">
           <div class="col-md-2" style="margin-right:10px;">
-            <a routerLink="/detail/{{show.id}}" (click)="gotoDetail(show)">
-              <img [src]="show.image.medium" style="margin: 0!important;padding: 0!important;"></a>
+            <a  routerLink="/detail/{{show.show.id}}">
+              <img *ngIf="show.show.image" [src]="show.show.image?.medium" style="margin: 0!important;padding: 0!important;">
+              <img *ngIf="!show.show.image" src="https://placeholdit.co//i/200x250?">
+            </a>
+
+          </div>
+          <div class="col-md-8">
+            <div class="card-block">
+              <h4 class="card-title">{{show.show.name}}</h4>
+              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+              <span class="card-text" [innerHTML]="show.show.summary"></span>
+              <a href="{{show.show.url}}" class="card-link">View more</a>
+              <a href="{{show.show.officialSite}}" class="card-link">Official site</a>
+              <ul class="list-inline">
+                <li class="list-inline-item" *ngFor="let genre of show.show.genres; let i = index;">{{genre}}
+                  <span *ngIf="i != show.show.genres.length - 1">|</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--<div class="col-lg-12" *ngIf='searchValue === ""'>
+      <div class="card" *ngFor="let show of shows | async" style="margin-bottom: 5px;">
+        <div class="row">
+          <div class="col-md-2" style="margin-right:10px;">
+            <a  routerLink="/detail/{{show.show.id}}">
+              <img *ngIf="show.image" [src]="show.image?.medium" style="margin: 0!important;padding: 0!important;">
+              <img *ngIf="show.image" src="https://placeholdit.co//i/200x250?">
+            </a>
+
           </div>
           <div class="col-md-8">
             <div class="card-block">
               <h4 class="card-title">{{show.name}}</h4>
               <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-              <p class="card-text">{{show.summary}}</p>
+              <span class="card-text" [innerHTML]="show.summary"></span>
               <a href="{{show.url}}" class="card-link">View more</a>
               <a href="{{show.officialSite}}" class="card-link">Official site</a>
               <ul class="list-inline">
@@ -32,7 +61,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>-->
 
   </div>
 </div>
