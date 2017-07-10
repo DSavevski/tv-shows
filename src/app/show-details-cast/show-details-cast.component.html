@@ -1,0 +1,18 @@
+<h2 class="card-header text-center">Cast</h2>
+<div class="card-deck" style="margin-top: 20px;">
+  <div class="col-md-3" *ngFor="let tmp of cast" style="margin-bottom:10px;">
+  <div class="card" >
+
+
+        <img class="card-img-top" [src]="tmp.person.image.medium" alt="Card image cap">
+        <div class="card-block">
+          <h4 class="card-title">{{tmp.person.name}}</h4>
+          <p class="card-text">Character: {{tmp.character.name}}</p>
+        </div>
+        <div class="card-footer text-center">
+          <a style="text-decoration: none" class="text-primary" [href]="tmp.person.url">Find out more</a>
+        </div>
+
+  </div>
+  </div>
+</div>

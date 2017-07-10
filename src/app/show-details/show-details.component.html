@@ -1,0 +1,32 @@
+<div class="card text-center">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" href="#">General</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/detail/{{show.id}}/cast">Cast</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/detail/{{show.id}}/episodes">Episodes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="onBack()">Back</a>
+      </li>
+    </ul>
+  </div>
+  <div class="card-block">
+    <h4 class="card-title">{{show.name}}</h4>
+    <img [src]="show.image.medium" class="card-img" style="margin-bottom: 10px;">
+    <p class="card-text">{{show.summary}}</p>
+    <div class="row">
+      <div class="col-md-3 text-primary">Language: {{show.language}}</div>
+      <div class="col-md-3">
+        <p class="text-success">{{show.genres}}</p>
+      </div>
+      <div class="col-md-3 text-danger">Status: {{show.status}}</div>
+      <div class="col-md-3 text-info">Premiered: {{show.premiered | date}}</div>
+    </div>
+    <a [href]="show.officialSite" class="btn btn-warning">Official site</a>
+  </div>
+</div>
