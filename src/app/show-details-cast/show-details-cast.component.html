@@ -1,20 +1,18 @@
-
 <h2 class="card-header text-center">Cast</h2>
 <button (click)="onBack()" class="btn btn-primary btn-block">Back</button>
 <div class="card-deck" style="margin-top: 20px;">
-  <div class="col-md-3" *ngFor="let tmp of cast" style="margin-bottom:10px;">
-  <div class="card" >
+  <div class="col-md-3" *ngFor="let c of cast" style="margin-bottom:10px;">
+    <div class="card">
 
+      <img *ngIf="c.person.image" class="card-img-top" [src]="c.person.image?.medium" alt="Card image cap">
+      <div class="card-block">
+        <h4 class="card-title">{{c.person.name}}</h4>
+        <p class="card-text">Character: {{c.character.name}}</p>
+      </div>
+      <div class="card-footer text-center">
+        <a style="text-decoration: none" class="text-primary" [href]="c.person.url">Find out more</a>
+      </div>
 
-        <img *ngIf="tmp.person.image" class="card-img-top" [src]="tmp.person.image?.medium" alt="Card image cap">
-        <div class="card-block">
-          <h4 class="card-title">{{tmp.person.name}}</h4>
-          <p class="card-text">Character: {{tmp.character.name}}</p>
-        </div>
-        <div class="card-footer text-center">
-          <a style="text-decoration: none" class="text-primary" [href]="tmp.person.url">Find out more</a>
-        </div>
-
-  </div>
+    </div>
   </div>
 </div>

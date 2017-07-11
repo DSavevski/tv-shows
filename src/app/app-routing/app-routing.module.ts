@@ -27,7 +27,12 @@ const routes: Route[] = [
   {
     path: 'detail/:id/episodes',
     component: ShowDetailsEpisodesComponent
-  }];
+  },
+  {
+    path: '**',
+    redirectTo: 'shows'
+  }
+  ];
 
 @NgModule({
   imports: [
