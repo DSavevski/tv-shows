@@ -29,5 +29,4 @@ export class ShowDetailsEpisodesComponent implements OnInit {
   onBack() {
     this.location.back();
   }
-
 }

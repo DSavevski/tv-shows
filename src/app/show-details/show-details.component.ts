@@ -30,14 +30,4 @@ export class ShowDetailsComponent implements OnInit {
   onBack() {
     this.location.back();
   }
-
-  gotoDetailCast(show: any): void {
-    let link = ['/detail', show.id, '/cast'];
-    this.router.navigate(link);
-  }
-
-  gotoDetailEpisodes(show: any): void {
-    let link = ['/detail', show.id, '/episodes'];
-    this.router.navigate(link);
-  }
 }

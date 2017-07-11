@@ -28,5 +28,4 @@ export class ShowDetailsCastComponent implements OnInit {
   onBack() {
     this.location.back();
   }
-
 }

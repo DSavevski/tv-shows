@@ -13,5 +13,4 @@ export class ShowSearchService {
     return this.http.get(`http://api.tvmaze.com/search/shows?q=${term}`)
       .map(response => response.json());
   }
-
 }

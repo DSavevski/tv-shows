@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {ShowService} from '../show.service';
+import {Component, OnInit} from '@angular/core';
 import {ShowSearchService} from '../show-search.service';
-import {Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
 
@@ -13,7 +11,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
-import {isNullOrUndefined} from 'util';
+
 
 @Component({
   selector: 'app-shows',
@@ -22,43 +20,29 @@ import {isNullOrUndefined} from 'util';
 })
 export class ShowsComponent implements OnInit {
 
-  //shows: any [];
-
   shows: Observable<any []>;
   private searchTerms = new Subject<string>();
-  searchValue = "";
+  searchValue = '';
 
-  constructor(private showSearchService: ShowSearchService,
-              private showService: ShowService,
-              private router: Router) {}
+  constructor(private showSearchService: ShowSearchService) {}
 
   search(term: string): void {
     this.searchTerms.next(term);
   }
 
   ngOnInit() {
-      /*this.showService.getShows().then(data => {
-       this.shows = data;
-       for (let i = 0; i < this.shows.length; i++) {
-       this.shows[i]['summary'] = this.shows[i]['summary'].replace(/<\/?[^>]+>/gi, '');
-       }
-       });*/
-
-        this.shows = this.searchTerms
-          .debounceTime(300)        // wait 300ms after each keystroke before considering the term
-          .distinctUntilChanged()   // ignore if next search term is same as previous
-          .switchMap(term => term   // switch to new observable each time the term changes
-            // return the http search observable
-            ? this.showSearchService.search(term)
-            // or the observable of empty heroes if there was no search term
-            : Observable.of<any []>([]))
-          .catch(error => {
-            // TODO: add real error handling
-            console.log(error);
-            return Observable.of<any []>([]);
-          });
-
-
-      console.log('SEARCH VALUE', this.searchValue);
+    this.shows = this.searchTerms
+      .debounceTime(300)        // wait 300ms after each keystroke before considering the term
+      .distinctUntilChanged()   // ignore if next search term is same as previous
+      .switchMap(term => term   // switch to new observable each time the term changes
+        // return the http search observable
+        ? this.showSearchService.search(term)
+        // or the observable of empty heroes if there was no search term
+        : Observable.of<any []>([]))
+      .catch(error => {
+        // TODO: add real error handling
+        console.log(error);
+        return Observable.of<any []>([]);
+      });
   }
 }
